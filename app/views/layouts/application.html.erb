@@ -14,8 +14,8 @@
       <%= link_to 'Edit profile', edit_company_registration_path %> |
       <%= link_to "Logout", destroy_company_session_path, method: :delete %>
     <% else %>
-      <%= link_to "Sign up", new_company_registration_path %> |
-      <%= link_to "Login", new_company_session_path %>
+      <%= link_to "Company Sign up", new_company_registration_path %> |
+      <%= link_to "Company Login", new_company_session_path %>
     <% end %>
 
     <%= yield %>
