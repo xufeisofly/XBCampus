@@ -1,5 +1,8 @@
 {
   "name": "XBCampus",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "element-ui": "^1.4.1",
+    "vue": "^2.4.2"
+  }
 }
