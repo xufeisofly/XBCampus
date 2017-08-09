@@ -369,6 +369,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   binding_of_caller
   bootstrap-sass
   bootstrap-will_paginate
@@ -418,4 +419,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.15.1
+   1.15.2
