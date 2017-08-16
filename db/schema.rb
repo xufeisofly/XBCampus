@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< 38f398c2f73e00728d32a0a3d4b8a6d905d82986
 ActiveRecord::Schema.define(version: 20170806063720) do
+=======
+ActiveRecord::Schema.define(version: 20170816183956) do
+>>>>>>> add student sign in and sign out
 
   create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "email", default: "", null: false
@@ -47,7 +51,9 @@ ActiveRecord::Schema.define(version: 20170806063720) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.string "remember_token"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
 end
