@@ -28,6 +28,7 @@
       Logged in as <strong><%= current_student.email %></strong>.
       <%= link_to 'profile', current_student %> |
       <%= link_to "Sign out", studentsignout_path, method: :delete %>
+      <%= link_to "Settings", edit_user_path(current_student) %>
     <% else %>
       <%= link_to "Sign up now!", signup_path %> |
       <%= link_to "Sign in", studentsignin_path %>

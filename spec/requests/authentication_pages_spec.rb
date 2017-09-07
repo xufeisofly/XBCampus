@@ -33,9 +33,11 @@ RSpec.describe "AuthenticationPages", type: :request do
         fill_in "Email", with: user.email
         fill_in "Password", with: user.password
         click_button "Sign in"
+        cookies[:remember_token] = user.remember_token
       end
 
       it { should have_link('Sign out', href: studentsignout_path) }
+      it { should have_link('Settings', href: edit_user_path(user))}
       it { should_not have_link('Sign in', href: studentsignin_path)}
       
       describe "followed by signout" do
@@ -43,5 +45,33 @@ RSpec.describe "AuthenticationPages", type: :request do
         it { should have_link('Sign in')}
       end
     end    
+  end
+
+  describe "Authorization", :type => :feature do
+
+    describe "for non-signed-in users" do
+      let(:user) { FactoryGirl.create(:user) }
+
+      describe "submitting to the update action" do
+        before { put user_path(user) }
+        specify { response.should redirect_to(studentsignin_path) }
+      end
+    end
+
+    describe "as wrong user" do
+      let(:user) { FactoryGirl.create(:user) }
+      let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
+      before { sign_in user }
+
+      describe "visit Users#edit page" do
+        before { visit edit_user_path(wrong_user) }
+        it { should_not have_selector('h1', text: "Update your profile") }
+      end
+
+      describe "submitting a PUT request to the Users#update action" do
+        before { put user_path(wrong_user) }
+        specify { response.should redirect_to(root_path) }
+      end
+    end
   end
 end
