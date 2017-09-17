@@ -1,0 +1,5 @@
+Hi <%= @user.name %>,
+
+Thanks for registering on XBCampus! 
+To confirm your registration, please click:
+<%= confirm_email_user_url(@user.confirm_token) %>
