@@ -5,8 +5,8 @@ RSpec.describe User, type: :model do
     before do 
       @user = User.new(name: "Example User",
                        email: "user@example.com",
-                       password: "foobar",
-                       password_confirmation: "foobar") 
+                       password: "foobar11",
+                       password_confirmation: "foobar11") 
     end
 
     subject { @user }
@@ -27,6 +27,15 @@ RSpec.describe User, type: :model do
 
     describe "when name is too long" do
       before { @user.name = "a" *26}
+      it {should_not be_valid}
+    end
+
+    describe "when name is already taken" do
+      before do
+        user_with_the_same_name = @user.dup
+        user_with_the_same_name.save
+      end
+
       it {should_not be_valid}
     end
 
@@ -70,6 +79,28 @@ RSpec.describe User, type: :model do
     describe "when password is not present" do
       before { @user.password = @user.password_confirmation = " "}
       it {should_not be_valid}
+    end
+
+    describe "when password format is not valid" do
+      it "should be invalid" do
+        passwords = %w[aaaaaa 111111]
+        passwords.each do |invalid_password|
+          @user.password = invalid_password
+          @user.password_confirmation = invalid_password
+          expect(@user).not_to be_valid
+        end
+      end
+    end
+
+    describe "when password format is valid" do
+      it "should be valid" do
+        passwords = %w[1111aa aaaa11]
+        passwords.each do |valid_password|
+          @user.password = valid_password
+          @user.password_confirmation = valid_password
+          expect(@user).to be_valid
+        end
+      end
     end
 
     describe "when password doesn't match confirmation" do
