@@ -1,10 +1,14 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+  before_action :logged_in_company, only: [:new, :edit]
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   # GET /posts/1
@@ -32,7 +36,7 @@ class PostsController < ApplicationController
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { render :new }
+        format.html { render :new, notice: '请先登录企业账号' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -70,6 +74,13 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:topic, :content, :contact_person)
+      params.require(:post).permit(:topic, :content, :contact_person, :company_id)
+    end
+
+    def logged_in_company
+      unless company_signed_in?
+        flash[:danger] = '请先登录企业账号'
+        redirect_to new_company_session_path
+      end
     end
 end
