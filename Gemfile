@@ -21,6 +21,7 @@ gem 'kaminari' # 瀑布式滚动插件，放在elasticsearch之前
 gem 'will_paginate' # 分页空间
 gem 'bootstrap-will_paginate' # bootstrap
 gem 'bootstrap-sass'
+gem 'bcrypt' #password
 gem 'elasticsearch-model' # es搜索
 gem 'elasticsearch-rails'
 
