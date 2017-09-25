@@ -1,27 +1,39 @@
+<% enable_vue_support %>
 <p id="notice"><%= notice %></p>
 <%= link_to "Student Sign Up", signup_path, class: "btn btn-lg btn-primary" %>
 <h1>Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>主题</th>
-      <th>创建人</th>
-      <th>创建时间</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= link_to post.topic, post %></td>
-        <td><%= post.contact_person %></td>
-        <td><%= post.created_at %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+<div id="posts-table">
+  <template>
+    <el-table :data="tableData" style="width: 100%" ref="tableData" @row-click="getPost">
+      <el-table-column prop="topic" label="主题"></el-table-column>
+      <el-table-column prop="contact_person" label="创建人" width="180"></el-table-column>
+      <el-table-column prop="created_at" label="创建时间" width="280"></el-table-column>
+    </el-table>
+  </template>
+  <el-button type="primary" @click="newPost">发榜</el-button>
+</div>
+<script>
+  var vm = new Vue({
+    el: '#posts-table',
+    data: {
+      tableData: []
+    },
+    created: function() {
+      this.getJson();
+    },
+    methods: {
+      getJson() {
+        var that = this
+        $.getJSON('<%= posts_path %>', function(data) {
+          that.tableData = data;
+        });
+      },
+      newPost() {
+        window.location.href = `/posts/new`;
+      },
+      getPost(row) {
+        window.location.href = `/posts/${row['id']}`;
+      }
+    }
+  })
+</script>

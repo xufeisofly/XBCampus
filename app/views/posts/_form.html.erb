@@ -67,12 +67,14 @@
     },
     methods: {
       submitForm(f) {
+        params = this.postForm
+
         this.$refs[f].validate(valid => {
           if(valid) {
             $.ajax({
               url: '<%= posts_path %>',
               type: 'POST',
-              data: { post: this.postForm }
+              data: { post: params }
             })
           } else {
             this.$message.warning('请填写所需信息')
