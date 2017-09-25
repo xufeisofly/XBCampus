@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20170808194730) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
+    t.string "contact_person"
+    t.string "phone"
     t.index ["email"], name: "index_companies_on_email", unique: true
     t.index ["reset_password_token"], name: "index_companies_on_reset_password_token", unique: true
   end
@@ -35,6 +37,8 @@ ActiveRecord::Schema.define(version: 20170808194730) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "contact_person"
+    t.integer "company_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
