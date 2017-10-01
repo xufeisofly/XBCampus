@@ -16,8 +16,6 @@ test:
 
 production:
   adapter: postgresql
-  host: localhost
-  password:
   database: XBCampus_production
 
 
