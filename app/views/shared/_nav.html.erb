@@ -1,0 +1,43 @@
+<div id="xbc_nav">
+  <el-menu theme="dark" :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+    <el-menu-item index="1"><a href="/posts">回城</a></el-menu-item>
+    <el-submenu index="2">
+      <template slot="title">门派</template>
+      <el-menu-item index="2-1">做电路</el-menu-item>
+      <el-menu-item index="2-2">写代码</el-menu-item>
+    </el-submenu>
+    <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">个人装备</a></el-menu-item>
+    <% if company_signed_in? %>
+      <el-submenu index="5" style="float: right">
+        <template slot="title"><%= current_company.username %></template>
+        <el-menu-item index="5-1"><%= link_to "编辑账户", edit_company_registration_path %></el-menu-item>
+        <el-menu-item index="5-2"><%= link_to "登出", destroy_company_session_path, method: :delete %></el-menu-item>
+      </el-submenu>
+      <el-menu-item index="4" style="float: right"><a href="/posts/new"><i class="el-icon-plus"></i></a></el-menu-item>
+    <% else %>
+      <el-submenu index="4" style="float: right">
+        <template slot="title">注册</template>
+        <el-menu-item index="4-1"><%= link_to "企业注册", new_company_registration_path %></el-menu-item>
+        <el-menu-item index="4-2"><%= link_to "学生注册", signup_path %></el-menu-item>
+      </el-submenu>
+      <el-submenu index="5" style="float: right">
+        <template slot="title">登录</template>
+        <el-menu-item index="5-1"><%= link_to "企业登录", new_company_session_path %></el-menu-item>
+        <el-menu-item index="5-2">学生登录</el-menu-item>
+      </el-submenu>
+    <% end %>
+  </el-menu>
+</div>
+<script>
+  var vm = new Vue({
+    el: '#xbc_nav',
+    data: {
+      activeIndex: '1'
+    },
+    methods: {
+      handleSelect(key, keyPath) {
+        console.log(key, keyPath);
+      }
+    }
+  })
+</script>
