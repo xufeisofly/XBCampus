@@ -30,11 +30,15 @@
       <%= link_to "Sign out", studentsignout_path, method: :delete %>
       <%= link_to "Settings", edit_user_path(current_student) %>
     <% else %>
-      <%= link_to "Sign up now!", signup_path %> |
+      <%= link_to "Sign up now!", student_signup_path %> |
       <%= link_to "Sign in", studentsignin_path %>
     <% end %>
 
     <%= yield %>
 
+    
+    <div class="container">
+      <%= debug(params) if Rails.env.development? %>
+    </div>
   </body>
 </html>

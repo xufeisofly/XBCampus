@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :companies
 	root "posts#index"
-  get '/signup', to: 'users#new'
+  get '/student/signup', to: 'users#new'
   get '/studentsignin', to: 'sessions#new'
   match '/studentsignout', to: 'sessions#destroy', via: :delete
   resources :posts

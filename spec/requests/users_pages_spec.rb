@@ -13,7 +13,7 @@ RSpec.describe "UserPages", type: :request do
 
     describe "student signup", :type => :feature do
         
-        before {visit signup_path}
+        before {visit "student/signup"}
 
 
         let(:submit) { "create my account" }
