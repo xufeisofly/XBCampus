@@ -4,14 +4,18 @@
 <h1>Posts</h1>
 <div id="posts-table">
   <template>
-    <el-table :data="tableData" style="width: 100%" ref="tableData" @row-click="getPost">
-      <el-table-column prop="topic" label="主题"></el-table-column>
+    <el-table :data="tableData" style="width: 100%">
+      <el-table-column prop="topic" label="主题">
+        <template scope="scope">
+          <a :href="'/posts/' + scope.row.id">{{ scope.row.topic }}</a>
+        </template>
+      </el-table-column>
       <el-table-column prop="contact_person" label="创建人" width="180"></el-table-column>
       <el-table-column prop="created_at" label="创建时间" width="280"></el-table-column>
     </el-table>
   </template>
-  <el-button type="primary" @click="newPost">发榜</el-button>
 </div>
+<%= link_to 'New Post', new_post_path, class: "btn btn-primary" %>
 <script>
   var vm = new Vue({
     el: '#posts-table',
@@ -27,12 +31,6 @@
         $.getJSON('<%= posts_path %>', function(data) {
           that.tableData = data;
         });
-      },
-      newPost() {
-        window.location.href = `/posts/new`;
-      },
-      getPost(row) {
-        window.location.href = `/posts/${row['id']}`;
       }
     }
   })
