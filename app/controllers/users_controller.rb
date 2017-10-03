@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :signed_in_student, only: [:edit, :update]
+  before_action :signed_in_student, only: [:index, :edit, :update]
   before_action :correct_user,      only: [:edit, :update]
 
   def show
@@ -32,6 +32,10 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def index
+    @users = User.paginate(page: params[:page])
   end
 
   def confirmation_email

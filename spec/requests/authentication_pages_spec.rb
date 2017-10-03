@@ -36,9 +36,9 @@ RSpec.describe "AuthenticationPages", type: :request do
         cookies[:remember_token] = user.remember_token
       end
 
-      it { should have_link('Sign out', href: studentsignout_path) }
-      it { should have_link('Settings', href: edit_user_path(user))}
-      it { should_not have_link('Sign in', href: studentsignin_path)}
+      # it { should have_link('Sign out', href: studentsignout_path) }
+      # it { should have_link('Settings', href: edit_user_path(user))}
+      # it { should_not have_link('Sign in', href: studentsignin_path)}
       
       describe "followed by signout" do
         before { click_link "Sign out"}
@@ -55,6 +55,11 @@ RSpec.describe "AuthenticationPages", type: :request do
       describe "submitting to the update action" do
         before { put user_path(user) }
         specify { response.should redirect_to(studentsignin_path) }
+      end
+
+      describe "visit Users#index page" do
+        before { get users_path}
+        specify { response.should redirect_to(studentsignin_path)}
       end
     end
 
