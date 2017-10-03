@@ -1,0 +1,19 @@
+<%= form_with scope: :session, url: sessions_path, local: true do |form| %>
+
+
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :session_email %>
+  </div>
+
+   <div class="field">
+    <%= form.label :password%>
+    <%= form.password_field :password, id: :session_password %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit "Sign in", class: "btn btn-large btn-primary"%>   
+  </div>
+<% end %>
