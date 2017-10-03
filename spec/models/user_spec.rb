@@ -5,8 +5,13 @@ RSpec.describe User, type: :model do
     before do 
       @user = User.new(name: "Example User",
                        email: "user@example.com",
+<<<<<<< HEAD
                        password: "foobar",
                        password_confirmation: "foobar") 
+=======
+                       password: "foobar11",
+                       password_confirmation: "foobar11") 
+>>>>>>> master
     end
 
     subject { @user }
@@ -16,7 +21,10 @@ RSpec.describe User, type: :model do
     it{ should respond_to(:password_digest)}
     it{ should respond_to(:password)}
     it{ should respond_to(:password_confirmation)}
+<<<<<<< HEAD
     it{ should respond_to(:remember_token)}
+=======
+>>>>>>> master
     it{ should respond_to(:authenticate)}
 
     it{ should be_valid}
@@ -31,6 +39,18 @@ RSpec.describe User, type: :model do
       it {should_not be_valid}
     end
 
+<<<<<<< HEAD
+=======
+    describe "when name is already taken" do
+      before do
+        user_with_the_same_name = @user.dup
+        user_with_the_same_name.save
+      end
+
+      it {should_not be_valid}
+    end
+
+>>>>>>> master
     describe "when email is not present" do
       before { @user.email = " "}
       it {should_not be_valid}

@@ -3,9 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .f-title {
-	text-align: center;
+  text-align: center;
 }
 .new-form {
-	width: 600px;
-	margin: 40px auto;
+  width: 600px;
+  margin: 40px auto;
+}
+
+.posts_table {
+  margin: 0 auto;
+  width: 60%;
+  .el-table {
+    border: none;
+    &::after {
+      display: none;
+    }
+    &::before {
+      display: none;
+    }
+  }
 }

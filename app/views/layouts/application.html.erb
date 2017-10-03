@@ -13,16 +13,6 @@
   </head>
 
   <body>
-    <div id="user-stat">
-      <% if company_signed_in? %>
-        Logged in as <strong><%= current_company.email %></strong>.
-        <%= link_to 'Edit profile', edit_company_registration_path %> |
-        <%= link_to "Logout", destroy_company_session_path, method: :delete %>
-      <% else %>
-        <%= link_to "Sign up", new_company_registration_path %> |
-        <%= link_to "Login", new_company_session_path %>
-      <% end %>
-    </div>
 
     <% if student_signed_in? %>
       Logged in as <strong><%= current_student.email %></strong>.
@@ -34,6 +24,8 @@
       <%= link_to "Sign in", studentsignin_path %>
     <% end %>
 
+    <%= render 'shared/nav' %>
+    <%= render 'shared/flash' %>
     <%= yield %>
 
     

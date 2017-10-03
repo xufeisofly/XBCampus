@@ -43,6 +43,7 @@ gem 'omniauth-weibo-oauth2'
 # forms
 gem 'simple_form'
 gem 'cocoon'
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
   gem 'capybara', '~> 2.13'
@@ -71,4 +72,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+group :productiton do
+  gem 'pg', '0.18.4'
+end
