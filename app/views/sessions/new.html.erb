@@ -1,5 +1,9 @@
 <% enable_vue_support %>
 
-<h1>Sign in</h1>
-<%= render 'form', session: @session %>
-<p>New user? <%= link_to "Sign up now!", student_signup_path %></p>
+<div class="container">
+  <div class="f-title">
+    <h1>Sign in</h1>
+    <%= render 'form', session: @session %>
+  </div>
+  <p>New user? <%= link_to "Sign up now!", student_signup_path %></p>
+</div>
