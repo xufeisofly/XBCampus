@@ -1,0 +1,14 @@
+<% enable_vue_support %>
+
+<div id="comment-form" class="new-form">
+  <%= form_for([@post, @post.comments.build]) do |form| %>
+    <div class="field">
+      <%= form.label :content %>
+      <%= form.text_area :content, id: :comment_content %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "reply", class: "btn btn-large btn-primary"%>   
+    </div>
+  <% end %>
+</div>
