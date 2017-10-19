@@ -4,7 +4,6 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create(params[:comment].permit(:content))
     @comment.user_id = current_student.id if current_student
-    @comment.save
 
     if @comment.save
       redirect_to @post
