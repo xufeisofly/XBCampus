@@ -1,0 +1,27 @@
+
+
+<div id="comments">
+<p>{{comments.content}}</p>
+</div>
+
+<script>
+var vm = new Vue({
+  el:"#comments",
+  data() {
+    return {
+      comments: []
+    }         
+  },
+  created: function() {
+    this.getJson();
+  },
+  methods: {
+    getJson() {
+      var that = this
+      $.getJSON('/posts/#{@post.comments}'.json, function(data) {
+        that.comments = data;
+      });
+    }
+  }
+})
+</script>

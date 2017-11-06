@@ -1,27 +1,78 @@
+<% enable_vue_support %>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Topic:</strong>
-  <%= @post.topic %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
-
-<p>
-  <%= @post.comments.count %>
-</p>
+<div id="post">
+  <p>{{postData.id}}</p>
+  <p>{{postData.comments}}</p>
+  <ol>
+    <li v-for="comment in postData.comments">{{comment.content}}</li>
+    <li v-for="comment in postData.comments"><span>{{ comment.created_at }}</span></li>
+  </ol>
+</div>
 
 
-<% @post.comments.each do |comment| %>
-  <p>
-    <%= comment.content %>
-  </p>
-<% end %>
 
+
+<%= render 'comments/comments' %>
 <%= render 'comments/comment' %>
+
+<script>
+  var vm = new Vue({
+    el:"#post",
+    data() {
+      return {
+        postData: []
+      }         
+    },
+    created: function() {
+      this.getJson();
+    },
+    methods: {
+      getJson() {
+        var that = this
+        $.getJSON('/posts/#{@post.id}'.json, function(data) {
+          that.postData = data;
+        });
+      },
+      formatDate: function (date) {
+        return moment(String(date)).format('MM/DD/YYYY hh:mm')
+      }
+    }
+  })
+</script>
+
+<style>
+.el-header, .el-footer {
+  background-color: #B3C0D1;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
+}
+
+.el-aside {
+  background-color: #D3DCE6;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
+}
+
+.el-main {
+  background-color: #E9EEF3;
+  color: #333;
+  text-align: center;
+  line-height: 160px;
+}
+
+body > .el-container {
+  margin-bottom: 40px;
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+  line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+  line-height: 320px;
+}
+</style>
