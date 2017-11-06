@@ -6,7 +6,7 @@
   <p>{{postData.comments}}</p>
   <ol>
     <li v-for="comment in postData.comments">{{comment.content}}</li>
-    <li v-for="comment in postData.comments"><span>{{ comment.created_at }}</span></li>
+    <li v-for="comment in postData.comments"><span>{{ formatDate(comment.created_at) }}</span></li>
   </ol>
 </div>
 
