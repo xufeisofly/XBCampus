@@ -1,19 +1,27 @@
 <% enable_vue_support %>
 <p id="notice"><%= notice %></p>
 
-<div id="post">
-  <p>{{postData.id}}</p>
-  <p>{{postData.comments}}</p>
-  <ol>
-    <li v-for="comment in postData.comments">{{comment.content}}</li>
-    <li v-for="comment in postData.comments"><span>{{ formatDate(comment.created_at) }}</span></li>
-  </ol>
+<div id="post" class="post">
+
+  <el-container>
+    <el-header><h2>{{postData.topic}}</h2></el-header>
+    <el-main>
+      <p>{{postData.content}}</p>
+      <p>{{formatDate(postData.created_at)}}</p>
+      <p>{{postData.contact_person}}</p>
+      <ul>
+        <li v-for="comment in postData.comments">{{comment.content}}
+          <span>{{ formatDate(comment.created_at) }}</span>
+        </li>
+      </ul>
+    </el-main>
+  </el-container>
+ 
 </div>
 
 
 
 
-<%= render 'comments/comments' %>
 <%= render 'comments/comment' %>
 
 <script>
@@ -40,39 +48,3 @@
     }
   })
 </script>
-
-<style>
-.el-header, .el-footer {
-  background-color: #B3C0D1;
-  color: #333;
-  text-align: center;
-  line-height: 60px;
-}
-
-.el-aside {
-  background-color: #D3DCE6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
-}
-
-.el-main {
-  background-color: #E9EEF3;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
-}
-
-body > .el-container {
-  margin-bottom: 40px;
-}
-
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-  line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-  line-height: 320px;
-}
-</style>
