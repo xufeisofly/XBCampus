@@ -16,7 +16,7 @@
       </ul>
     </el-main>
   </el-container>
- 
+
 </div>
 
 
@@ -30,17 +30,16 @@
     data() {
       return {
         postData: []
-      }         
+      }
     },
     created: function() {
-      this.getJson();
+      this.getPost();
     },
     methods: {
-      getJson() {
-        var that = this
-        $.getJSON('/posts/#{@post.id}'.json, function(data) {
-          that.postData = data;
-        });
+      getPost() {
+        axios.get("/posts/<%= @post.id %>.json").then(response => {
+          this.postData = response.data
+        })
       },
       formatDate: function (date) {
         return moment(String(date)).format('MM/DD/YYYY hh:mm')
