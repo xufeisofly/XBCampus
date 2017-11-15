@@ -4,11 +4,11 @@
 <div id="post" class="post">
 
   <el-container>
-    <el-header><h2>{{postData.topic}}</h2></el-header>
+    <el-header><h2>{{postData.post.topic}}</h2></el-header>
     <el-main>
-      <p>{{postData.content}}</p>
-      <p>{{formatDate(postData.created_at)}}</p>
-      <p>{{postData.contact_person}}</p>
+      <p>{{postData.post.content}}</p>
+      <p>{{formatDate(postData.post.created_at)}}</p>
+      <p>{{postData.post.contact_person}}</p>
       <ul>
         <li v-for="comment in postData.comments">{{comment.content}}
           <span>{{ formatDate(comment.created_at) }}</span>
@@ -17,20 +17,23 @@
     </el-main>
   </el-container>
 
+  <comment-component></comment-component>
+
 </div>
-
-
-
 
 <%= render 'comments/comment' %>
 
 <script>
+  
   var vm = new Vue({
     el:"#post",
     data() {
       return {
         postData: []
       }
+    },
+    components: {
+      'comment-component': commentComponent
     },
     created: function() {
       this.getPost();

@@ -1,7 +1,6 @@
 <% enable_vue_support %>
 
-</div>
-<div id="comment-form">
+<script type="text/template" id="comment-form">
   <el-form :model="commentForm" :rules="rule" ref="commentForm" label-width="100px" class="demo-ruleForm">
     <el-form-item label="评论" prop="content">
       <el-input
@@ -16,11 +15,11 @@
       <el-button @click="resetForm('commentForm')">重置</el-button>
     </el-form-item>
   </el-form>
-</div>
+</script>
 
 <script>
-  var vm = new Vue ({
-    el: '#comment-form',
+  var commentComponent = Vue.extend ({
+    template: document.getElementById('comment-form').innerHTML,
     data() {
       var validateContent = (rule,value,callback) => {
         if(!value) {
@@ -29,8 +28,7 @@
           callback()
         }
       }
-      return {
-        
+      return {        
         commentForm: {
           authenticity_token: '<%= form_authenticity_token %>',
           content: ''         
@@ -47,11 +45,13 @@
         this.$refs[f].validate(valid => {
           if(valid) {
             axios.post("/posts/<%= @post.id %>/comments.json",
-                       params).catch(error => {
-                         this.$alert('system load error')
-                       }).then(response => {
-                         getJson()
-                       })
+                      params).catch(error => {
+                        this.$alert('system load error')
+                      }).then(response => {
+                        vm.getPost()
+                      }).catch(error => {
+                        this.$alert('system load error')
+                      })
           } else {
             this.$message.warning('请填写评论')
           }
