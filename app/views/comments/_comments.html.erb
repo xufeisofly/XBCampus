@@ -1,27 +1,19 @@
+<% enable_vue_support %>
 
-
-<div id="comments">
-<p>{{comments.content}}</p>
-</div>
+<script type="text/template" id="comments">
+  <div id="comments">
+    <ul>
+      <li v-for="comment in commentsdata">
+        {{comment.content}}
+        <span>{{ comment.created_at }}</span>
+      </li>
+    </ul>
+  </div>
+</script>
 
 <script>
-var vm = new Vue({
-  el:"#comments",
-  data() {
-    return {
-      comments: []
-    }         
-  },
-  created: function() {
-    this.getJson();
-  },
-  methods: {
-    getJson() {
-      var that = this
-      $.getJSON('/comments/comment'.json, function(data) {
-        that.comments = data;
-      });
-    }
-  }
-})
+  var comments = Vue.extend ({
+    template: document.getElementById('comments').innerHTML,
+    props: ['commentsdata']  
+  })
 </script>

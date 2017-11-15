@@ -9,11 +9,7 @@
       <p>{{postData.post.content}}</p>
       <p>{{formatDate(postData.post.created_at)}}</p>
       <p>{{postData.post.contact_person}}</p>
-      <ul>
-        <li v-for="comment in postData.comments">{{comment.content}}
-          <span>{{ formatDate(comment.created_at) }}</span>
-        </li>
-      </ul>
+      <comments-component :commentsdata="postData.comments"></comments-component>
     </el-main>
   </el-container>
 
@@ -21,6 +17,7 @@
 
 </div>
 
+<%= render 'comments/comments' %>
 <%= render 'comments/comment' %>
 
 <script>
@@ -33,7 +30,8 @@
       }
     },
     components: {
-      'comment-component': commentComponent
+      'comment-component': commentComponent,
+      'comments-component': comments
     },
     created: function() {
       this.getPost();
