@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   # get 'user/new'
-
-  devise_for :companies
 	root "posts#index"
   get '/student/signup', to: 'users#new'
   get '/studentsignin', to: 'sessions#new'
