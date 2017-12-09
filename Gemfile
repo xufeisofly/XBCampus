@@ -34,7 +34,6 @@ gem 'carrierwave-aliyun' # 图片上传阿里云oss
 
 # Authentication and Authorization
 gem 'pundit'
-gem 'devise'
 gem 'omniauth-oauth2', '~> 1.3.1' # 第三方登录认证
 gem 'omniauth-qq'
 gem 'omniauth-wechat-oauth2'
