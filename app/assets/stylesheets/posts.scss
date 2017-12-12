@@ -9,21 +9,45 @@
   margin: 40px auto;
 }
 
-.posts_table {
-  margin: 0 auto;
-  width: 60%;
-  .el-table {
-    border: none;
-    &::after {
-      display: none;
-    }
-    &::before {
-      display: none;
-    }
-  }
-}
-
 .post {
   margin: 0 auto;
   width: 80%;
+}
+
+#post-list li {
+  list-style: none;
+  width: 700px;
+  margin: 20px auto;
+
+  .post-category {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-top: 15px;
+    span {
+      text-align: center;
+      display: block;
+      line-height: 100px;
+      color: #fff;
+    }
+  }
+
+  .circuits {
+    background-color: #0099cc;
+  }
+
+  .code {
+    background-color: #009900;
+  }
+
+  .literature {
+    background-color: #990000;
+  }
+
+  .post-card {
+    display: inline-block;
+    width: 100%;
+    margin-left: 20px;
+  }
 }

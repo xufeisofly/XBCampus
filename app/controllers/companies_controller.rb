@@ -10,7 +10,6 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    binding.pry
     @company = Company.new(company_params)
     if @company.save
       render json: @company

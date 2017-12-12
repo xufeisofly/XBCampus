@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     @posts = Post.all
     respond_to do |format|
       format.html
-      format.json
+      format.json { render json: @posts }
     end
   end
 
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     respond_to do |format|
-      format.html 
+      format.html
       format.json {render :show, location: @post}
     end
   end

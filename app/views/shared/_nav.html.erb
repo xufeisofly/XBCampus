@@ -1,12 +1,11 @@
 <div id="xbc_nav">
-  <el-menu theme="dark" :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-    <el-menu-item index="1"><a href="/posts">回城</a></el-menu-item>
-    <el-submenu index="2">
-      <template slot="title">门派</template>
-      <el-menu-item index="2-1">做电路</el-menu-item>
-      <el-menu-item index="2-2">写代码</el-menu-item>
-    </el-submenu>
-    <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">个人装备</a></el-menu-item>
+  <el-menu
+  :default-active="activeIndex"
+  background-color="#333"
+  text-color="#fff"
+  class="el-menu-demo"
+  mode="horizontal"
+  @select="handleSelect">
     <% if student_signed_in? %>
       <el-submenu index="5" style="float: right">
         <template slot="title"><%= current_student.name %></template>
@@ -30,7 +29,7 @@
   var vm = new Vue({
     el: '#xbc_nav',
     data: {
-      activeIndex: '1'
+      activeIndex: '0'
     },
     methods: {
       handleSelect(key, keyPath) {
@@ -39,3 +38,7 @@
     }
   })
 </script>
+
+<style>
+
+</style>
