@@ -1,2 +1,2 @@
-json.partial! "posts/post", post: @post
+json.post @post
 json.comments @post.comments
