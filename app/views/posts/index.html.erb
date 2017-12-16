@@ -1,7 +1,8 @@
 <% enable_vue_support %>
 
 <div id="post-list">
-  <li v-for="post in posts">
+  <el-input v-model="search" placeholder="搜索" class="post-search"></el-input>
+  <li v-for="post in filteredPosts">
     <el-row>
       <el-col v-bind:span="6" class="post-category" v-bind:class="post.category">
         <span>{{ post.tag }}</span>
@@ -20,10 +21,18 @@
   var post_list = new Vue({
     el: '#post-list',
     data: {
-      posts: []
+      posts: [],
+      search: ''
     },
     created() {
       this.getPosts();
+    },
+    computed: {
+      filteredPosts() {
+        return this.posts.filter(post => {
+          return post.topic.match(this.search) || post.content.match(this.search);
+        })
+      }
     },
     methods: {
       getPosts() {
