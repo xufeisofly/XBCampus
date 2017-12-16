@@ -1,23 +1,29 @@
 <template id="sign-in-form">
   <el-dialog
-    title="登录"
     v-bind:visible.sync="visible"
     v-on:close="close">
-    <el-form v-bind:model="sign_in" ref="sign_in">
-      <el-form-item label="邮箱" prop="email">
-        <el-input type="email" v-model="sign_in.email"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="password">
-        <el-input type="password" v-model="sign_in.password"></el-input>
-      </el-form-item>
-      <el-form-item prop="authenticity_token">
-        <el-input type="hidden" v-model="sign_in.authenticity_token"></el-input>
-      </el-form-item>
-    </el-form>
-    <div class="footer">
-      <el-button type="primary" v-on:click="signIn">登录</el-button>
-      <el-button>注册</el-button>
-    </div>
+    <el-tabs v-model="activeModel" @tab-click="handleClick">
+      <el-tab-pane label="我是学生" name="student">
+        <el-form v-bind:model="sign_in" ref="sign_in">
+          <el-form-item label="邮箱" prop="email">
+            <el-input type="email" v-model="sign_in.email"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+            <el-input type="password" v-model="sign_in.password"></el-input>
+          </el-form-item>
+          <el-form-item prop="authenticity_token">
+            <el-input type="hidden" v-model="sign_in.authenticity_token"></el-input>
+          </el-form-item>
+        </el-form>
+        <div class="footer">
+          <el-button type="primary" v-on:click="signIn">登录</el-button>
+          <el-button>注册</el-button>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="我是企业" name="company">
+
+      </el-tab-pane>
+    </el-tabs>
   </el-dialog>
 </template>
 
@@ -35,10 +41,12 @@
           email: '',
           password: '',
           authenticity_token: '<%= form_authenticity_token %>'
-        }
+        },
+        activeModel: 'student'
       }
     },
     methods: {
+      handleClick(tab, event) {},
       close() {
         this.$emit('close');
       },
