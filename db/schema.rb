@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119093916) do
+ActiveRecord::Schema.define(version: 20171223084212) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20171119093916) do
     t.string "contact_person"
     t.string "phone"
     t.string "password_digest"
-    t.index ["email"], name: "index_companies_on_email", unique: true
   end
 
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
