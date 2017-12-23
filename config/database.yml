@@ -8,14 +8,17 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: <%= XBCampus_development
+  database: XBCampus_development
 
 test:
   <<: *defaults
   database: XBCampus_test
 
 production:
-  adapter: postgresql
-  database: XBCampus_production
+  host: ec2-54-227-252-202.compute-1.amazonaws.com
+  database: d7vfe5pn3eurvl
+  username: psigvsevivnxok
+  port: 5432
+  password: 434c7560b72c5687735d38c12a0e9f851f74572aa40eb386f31361c266d38a7a
 
 
