@@ -1,7 +1,6 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 .f-title {
   text-align: center;
 }
@@ -10,16 +9,54 @@
   margin: 40px auto;
 }
 
-.posts_table {
+.post {
   margin: 0 auto;
-  width: 60%;
-  .el-table {
-    border: none;
-    &::after {
-      display: none;
+  width: 80%;
+}
+
+#post-list {
+  .post-search {
+    margin: 20px auto;
+    width: 590px;
+    display: block;
+  }
+
+  li {
+    list-style: none;
+    width: 700px;
+    margin: 20px auto;
+
+    .post-category {
+      width: 100px;
+      height: 100px;
+      border-radius: 50px;
+      display: inline-block;
+      margin-top: 15px;
+      font-size: 40px;
+      span {
+        text-align: center;
+        display: block;
+        line-height: 100px;
+        color: #fff;
+      }
     }
-    &::before {
-      display: none;
-    }
+  }
+
+  .circuits {
+    background-color: #0099cc;
+  }
+
+  .code {
+    background-color: #009900;
+  }
+
+  .literature {
+    background-color: #990000;
+  }
+
+  .post-card {
+    display: inline-block;
+    width: 100%;
+    margin-left: 20px;
   }
 }

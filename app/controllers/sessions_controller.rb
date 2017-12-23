@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
         if user && user.authenticate(params[:session][:password])
             if  user.email_confirmed
                 student_signed_in(user)
-                redirect_to root_path
+                render json: 'success'
             else
                 flash.now[:error] = "Please activate your account"
                 render 'new'

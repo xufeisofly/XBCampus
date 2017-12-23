@@ -1,37 +1,45 @@
 <% enable_vue_support %>
-<p id="notice"><%= notice %></p>
-<div id="posts-table" class="posts_table">
-  <template>
-    <el-table
-    :data="tableData"
-    style="width: 100%"
-    stripe
-    :show-header="true">
-      <el-table-column prop="topic" label="主题">
-        <template scope="scope">
-          <a :href="'/posts/' + scope.row.id">{{ scope.row.topic }}</a>
-        </template>
-      </el-table-column>
-      <el-table-column prop="contact_person" label="创建人" width="180"></el-table-column>
-      <el-table-column prop="created_at" label="创建时间" width="280"></el-table-column>
-    </el-table>
-  </template>
+
+<div id="post-list">
+  <el-input v-model="search" placeholder="搜索" class="post-search"></el-input>
+  <li v-for="post in filteredPosts">
+    <el-row>
+      <el-col v-bind:span="6" class="post-category" v-bind:class="post.category">
+        <span>{{ post.tag }}</span>
+      </el-col>
+      <el-col v-bind:span="18">
+        <el-card class="post-card">
+          <h3>{{ post.topic }}</h3>
+          <p>{{ post.content }}</p>
+        </el-card>
+      </el-col>
+    </el-row>
+  </li>
 </div>
+
 <script>
-  var vm = new Vue({
-    el: '#posts-table',
+  var post_list = new Vue({
+    el: '#post-list',
     data: {
-      tableData: []
+      posts: [],
+      search: ''
     },
-    created: function() {
-      this.getJson();
+    created() {
+      this.getPosts();
+    },
+    computed: {
+      filteredPosts() {
+        return this.posts.filter(post => {
+          return post.topic.match(this.search) || post.content.match(this.search);
+        })
+      }
     },
     methods: {
-      getJson() {
-        var that = this
-        $.getJSON('<%= posts_path %>', function(data) {
-          that.tableData = data;
-        });
+      getPosts() {
+        axios.get('/posts.json').then(response => {
+          this.posts = response.data
+          console.log(response.data)
+        })
       }
     }
   })

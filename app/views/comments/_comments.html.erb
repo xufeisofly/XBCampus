@@ -1,0 +1,19 @@
+<% enable_vue_support %>
+
+<script type="text/template" id="comments">
+  <div id="comments">
+    <ul>
+      <li v-for="comment in commentsdata">
+        {{comment.content}}
+        <span>{{ comment.created_at }}</span>
+      </li>
+    </ul>
+  </div>
+</script>
+
+<script>
+  var comments = Vue.extend ({
+    template: document.getElementById('comments').innerHTML,
+    props: ['commentsdata']  
+  })
+</script>

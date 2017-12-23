@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "element-ui": "^1.4.1",
+    "moment": "^2.19.1",
     "vue": "^2.4.2"
   }
 }

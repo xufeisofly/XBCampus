@@ -1,0 +1,126 @@
+<% enable_vue_support %>
+
+<div id="company_signin">
+  <el-form
+    :model="signInForm"
+    :rules="signInRules"
+    ref="signInForm"
+    label-width="100px">
+    <el-form-item
+      label="企业名称"
+      prop="username">
+      <el-input
+        v-model="signInForm.username">
+      </el-input>
+    </el-form-item>
+    <el-form-item
+      label="邮箱"
+      prop="email">
+      <el-input
+        v-model="signInForm.email"
+        type="email">
+      </el-input>
+    </el-form-item>
+    <el-form-item
+      label="密码"
+      prop="password">
+      <el-input
+        v-model="signInForm.password"
+        type="password">
+      </el-input>
+    </el-form-item>
+    <el-form-item
+      label="确认密码"
+      prop="password_confirmation">
+      <el-input
+        v-model="signInForm.password_confirmation"
+        type="password">
+      </el-input>
+    </el-form-item>
+    <el-form-item
+      label="联系人"
+      prop="contact_person">
+      <el-input
+        v-model="signInForm.contact_person">
+      </el-input>
+    </el-form-item>
+    <el-form-item
+      label="电话"
+      prop="phone">
+      <el-input
+        v-model="signInForm.phone">
+      </el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-button
+        type="primary"
+        @click="createCompany">
+        注册
+      </el-button>
+    </el-form-item>
+  </el-form>
+</div>
+
+<script>
+  var company_signin = new Vue({
+    el: "#company_signin",
+    data() {
+      var validatePassword = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请输入密码'));
+        } else {
+          if (value.length < 6) {
+            callback(new Error('密码长度不得小于6个字符'));
+          } else {
+            callback();
+          }
+        }
+      };
+      var validateConfirmPassword = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请再次输入密码'));
+        } else if (value !== this.signInForm.password) {
+          callback(new Error('两次输入密码不一致'));
+        } else {
+          callback();
+        }
+      };
+      return {
+        signInForm: {
+          username: '',
+          email: '',
+          password: '',
+          password_confirmation: '',
+          contact_person: '',
+          phone: ''
+        },
+        signInRules: {
+          username: [
+            { required: true, message: '请输入企业名称', trigger: 'blur' }
+          ],
+          email: [
+            { required: true, message: '请输入邮箱', trigger: 'blur' }
+          ],
+          password: [
+            { required: true, validator: validatePassword, trigger: 'blur' }
+          ],
+          password_confirmation: [
+            { required: true, validator: validateConfirmPassword, trigger: 'blur' }
+          ]
+        }
+      }
+    },
+    methods: {
+      createCompany() {
+        this.$refs['signInForm'].validate((valid) => {
+          if (valid) {
+            params = { company: this.signInForm }
+            axios.post('/companies', params)
+          } else {
+            console.log('submit error')
+          }
+        })
+      }
+    }
+  })
+</script>

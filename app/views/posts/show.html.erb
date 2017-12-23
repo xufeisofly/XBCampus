@@ -1,14 +1,50 @@
+<% enable_vue_support %>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Topic:</strong>
-  <%= @post.topic %>
-</p>
+<div id="post" class="post">
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
+  <el-container>
+    <el-header><h2>{{postData.post.topic}}</h2></el-header>
+    <el-main>
+      <p>{{postData.post.content}}</p>
+      <p>{{formatDate(postData.post.created_at)}}</p>
+      <p>{{postData.post.contact_person}}</p>
+      <comments-component :commentsdata="postData.comments"></comments-component>
+    </el-main>
+  </el-container>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+  <comment-component></comment-component>
+
+</div>
+
+<%= render 'comments/comments' %>
+<%= render 'comments/comment' %>
+
+<script>
+  
+  var vm = new Vue({
+    el:"#post",
+    data() {
+      return {
+        postData: []
+      }
+    },
+    components: {
+      'comment-component': commentComponent,
+      'comments-component': comments
+    },
+    created: function() {
+      this.getPost();
+    },
+    methods: {
+      getPost() {
+        axios.get("/posts/<%= @post.id %>.json").then(response => {
+          this.postData = response.data
+        })
+      },
+      formatDate: function (date) {
+        return moment(String(date)).format('MM/DD/YYYY hh:mm')
+      }
+    }
+  })
+</script>

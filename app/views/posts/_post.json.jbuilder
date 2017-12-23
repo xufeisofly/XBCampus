@@ -1,1 +1,2 @@
-json.extract! post, :id, :topic, :contact_person, :created_at
+json.extract! post, :id, :topic, :content, :category
+json.tag I18n.t("post.categories.#{post.category}")
