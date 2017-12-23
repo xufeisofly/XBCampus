@@ -20,5 +20,6 @@ production:
   username: psigvsevivnxok
   port: 5432
   password: 434c7560b72c5687735d38c12a0e9f851f74572aa40eb386f31361c266d38a7a
+  adapter: postgresql
 
 
