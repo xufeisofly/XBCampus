@@ -9,8 +9,11 @@
     </div>
   </div>
 
-  <major-nav></major-nav>
-  <li v-for="post in filteredPosts">
+  <el-row>
+    <el-col :span="8"><major-nav></major-nav></el-col>
+    <el-col :span="16"></el-col>
+  </el-row>
+  <li class="post-li" v-for="post in filteredPosts">
     <el-row>
       <el-col v-bind:span="6" class="post-category" v-bind:class="post.category">
         <span>{{ post.tag }}</span>

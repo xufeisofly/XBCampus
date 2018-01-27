@@ -26,7 +26,7 @@
     display: block;
   }
 
-  li {
+  .post-li {
     list-style: none;
     width: 700px;
     margin: 20px auto;
@@ -63,5 +63,23 @@
     display: inline-block;
     width: 100%;
     margin-left: 20px;
+  }
+}
+
+#major-nav-container {
+  padding: 30px 70px;
+
+  .fields-list {
+    display: inline;
+    margin-left: 10px;
+    &::after {
+      content: '|';
+      color: #409EFF;
+      margin-left: 10px;
+    }
+
+    &:last-child::after {
+      content: '';
+    }
   }
 }

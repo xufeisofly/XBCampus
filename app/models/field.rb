@@ -1,3 +1,3 @@
 class Field < ApplicationRecord
-  belong_to :major
+  belongs_to :major
 end

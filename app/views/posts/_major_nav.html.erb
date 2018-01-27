@@ -1,7 +1,14 @@
 <template id="major-nav">
   <div id="major-nav-container">
     <div class="major-nav">
-
+      <template v-for="major in majors">
+        <div>
+          <h4>{{ major.name }}</h4>
+          <template v-for="field in major.fields">
+            <li class="fields-list">{{ field.name }}</li>
+          </template>
+        </div>
+      </template>
     </div>
     <div class="advertisement">
 
@@ -23,8 +30,7 @@
     methods: {
       getMajors() {
         axios.get('/majors').then(response => {
-          this.majors = response.data
-          console.log(response.data)
+          this.majors = response.data.majors
         })
       }
     }

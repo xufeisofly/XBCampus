@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   end
   resources :companies
   resources :sessions, only: [:new, :create, :destroy]
+
+  resources :majors, only: [:index]
 end
