@@ -11,7 +11,7 @@
 
   <el-row>
     <el-col :span="8"><major-nav></major-nav></el-col>
-    <el-col :span="16"></el-col>
+    <el-col :span="16"><advertisement-box></advertisement-box></el-col>
   </el-row>
   <li class="post-li" v-for="post in filteredPosts">
     <el-row>
@@ -29,12 +29,14 @@
 </div>
 
 <%= render 'major_nav' %>
+<%= render 'advertisement_box' %>
 
 <script>
   var post_list = new Vue({
     el: '#post-list',
     components: {
-      'major-nav': major_nav
+      'major-nav': major_nav,
+      'advertisement-box': advertisement_box
     },
     data: {
       posts: [],
