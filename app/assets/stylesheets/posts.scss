@@ -13,11 +13,16 @@
   margin: 0 auto;
   width: 80%;
 }
+.post-search-container {
+  border: #fff 1px solid;
+  background-color: rgba(64,158,255,0.05);
+  width: 100%;
+}
 
 #post-list {
   .post-search {
     margin: 20px auto;
-    width: 590px;
+    width: 50%;
     display: block;
   }
 
