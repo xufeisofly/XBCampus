@@ -28,7 +28,7 @@ RSpec.describe "AuthenticationPages", type: :request do
     end
 
     describe "with valid information" do
-      let(:user) {FactoryGirl.create(:user)}
+      let(:user) {FactoryBot.create(:user)}
       before do
         fill_in "Email", with: user.email
         fill_in "Password", with: user.password
@@ -50,7 +50,7 @@ RSpec.describe "AuthenticationPages", type: :request do
   describe "Authorization", :type => :feature do
 
     describe "for non-signed-in users" do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryBot.create(:user) }
 
       describe "submitting to the update action" do
         before { put user_path(user) }
@@ -64,8 +64,8 @@ RSpec.describe "AuthenticationPages", type: :request do
     end
 
     describe "as wrong user" do
-      let(:user) { FactoryGirl.create(:user) }
-      let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
+      let(:user) { FactoryBot.create(:user) }
+      let(:wrong_user) { FactoryBot.create(:user, email: "wrong@example.com") }
       before { sign_in user }
 
       describe "visit Users#edit page" do

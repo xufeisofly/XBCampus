@@ -1,6 +1,5 @@
 FactoryBot.define do
-  factory :field do
+  factory :major do
     name "MyString"
-    major "MyString"
   end
 end
