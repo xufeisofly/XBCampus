@@ -1,3 +1,3 @@
 class Field < ApplicationRecord
-  belongs_to :major
+  validates :name, presence: true
 end
