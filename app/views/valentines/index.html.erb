@@ -15,8 +15,9 @@
 </div>
 
 <script>
- var imageHeight = $('.valentine-image').height();
- $('.content').css('top', imageHeight/2 - 171);
+ var windowWidth = $(window).width();
+ var imageHeight = windowWidth * 920 / 1200;
+ $('.content').css('top', imageHeight/2 - 171/2);
  var windowHeight = $(window).height();
  console.log(windowHeight);
  $('.valentine-btn').css('height', windowHeight-imageHeight);
@@ -78,7 +79,7 @@
   }
 
   .change-enter-active {
-  transition: all .8s ease;
+  transition: all .4s ease;
   }
 
   .change-leave-active {
