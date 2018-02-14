@@ -1,0 +1,21 @@
+<template id="post-lists">
+  <div v-for="post in posts">
+    
+  </div>
+</template>
+
+<script>
+  var post_lists = Vue.extend({
+    template: "#post-lists",
+    data(){
+      return {
+
+      }
+    },
+    methods: {
+      getPosts(){
+        axios.get('/posts')
+      }
+    }
+  })
+</script>

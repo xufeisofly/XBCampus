@@ -14,7 +14,7 @@
     <el-col :span="16"><advertisement-box></advertisement-box></el-col>
   </el-row>
 
-  <post_lists></post_lists>
+  <post-lists></post-lists>
 </div>
 
 <%= render 'major_nav' %>
@@ -22,7 +22,7 @@
 <%= render 'post_lists' %>
 
 <script>
-  var post_list = new Vue({
+  var homePage = new Vue({
     el: '#post-list',
     components: {
       'major-nav': major_nav,
