@@ -1,21 +1,25 @@
 <div id="xbc_nav">
   <el-menu
   :default-active="activeIndex"
-  background-color="#333"
-  text-color="#fff"
+  background-color="#fff"
+  text-color="#000"
+  active-text-color="#409EFF"
   class="el-menu-demo"
   mode="horizontal"
   @select="handleSelect">
+    <el-menu-item index="0">首页</el-menu-item>
+    <el-menu-item index="1">公司</el-menu-item>
     <% if student_signed_in? %>
-      <el-submenu index="1" style="float: right">
+      <el-submenu index="2" style="float: right">
         <template slot="title"><%= current_student.name %></template>
-        <el-menu-item index="5-1"><%= link_to "编辑账户", edit_user_path(current_student) %></el-menu-item>
-        <el-menu-item index="5-２"><%= link_to "个人信息", current_student %></el-menu-item>
-        <el-menu-item index="5-３"><%= link_to "登出", studentsignout_path, method: :delete %></el-menu-item>
+        <el-menu-item index="2-1"><%= link_to "编辑账户", edit_user_path(current_student) %></el-menu-item>
+        <el-menu-item index="2-２"><%= link_to "个人信息", current_student %></el-menu-item>
+        <el-menu-item index="2-３"><%= link_to "登出", studentsignout_path, method: :delete %></el-menu-item>
       </el-submenu>
     <% else %>
-      <el-menu-item index="4" style="float: right;">注册</el-menu-item>
-      <el-menu-item index="5" style="float: right;" v-on:click="signInFormVisible = true">登录</el-menu-item>
+      <li class="sign-link sign-up">注册</li>
+      <li class="sign-link sign-divider">|</li>
+      <li class="sign-link sign-in" v-on:click="signInFormVisible = true">登录</li>
     <% end %>
 
     <sign-in-form

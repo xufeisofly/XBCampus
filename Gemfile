@@ -24,6 +24,7 @@ gem 'bootstrap-sass'
 gem 'bcrypt' #password
 gem 'elasticsearch-model' # es搜索
 gem 'elasticsearch-rails'
+gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'mysql2'
 
@@ -57,7 +58,7 @@ group :development, :test do
   gem 'guard-brakeman', require: false
 
   # Tests
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails'
   gem 'email_spec'

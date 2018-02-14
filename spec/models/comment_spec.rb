@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
   describe Comment do
-    let(:company) {FactoryGirl.create(:company)}
+    let(:company) {FactoryBot.create(:company)}
     let(:post) do 
-      FactoryGirl.create(:post, company: company)
+      FactoryBot.create(:post, company: company)
     end
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryBot.create(:user) }
     before do
       @comment = post.comments.build(content:"this is the first comment", user_id: user.id)
     end

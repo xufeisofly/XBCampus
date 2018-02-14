@@ -1,46 +1,40 @@
 <% enable_vue_support %>
 
 <div id="post-list">
-  <el-input v-model="search" placeholder="搜索" class="post-search"></el-input>
-  <li v-for="post in filteredPosts">
-    <el-row>
-      <el-col v-bind:span="6" class="post-category" v-bind:class="post.category">
-        <span>{{ post.tag }}</span>
-      </el-col>
-      <el-col v-bind:span="18">
-        <el-card class="post-card">
-          <h3>{{ post.topic }}</h3>
-          <p>{{ post.content }}</p>
-        </el-card>
-      </el-col>
-    </el-row>
-  </li>
+  <div class="post-search-container">
+    <div class="post-search">
+      <el-input v-model="search" placeholder="搜索">
+        <el-button slot="append" icon="el-icon-search"></el-button>
+      </el-input>
+    </div>
+  </div>
+
+  <el-row>
+    <el-col :span="8"><major-nav></major-nav></el-col>
+    <el-col :span="16"><advertisement-box></advertisement-box></el-col>
+  </el-row>
+
+  <post-lists></post-lists>
 </div>
 
+<%= render 'major_nav' %>
+<%= render 'advertisement_box' %>
+<%= render 'post_lists' %>
+
 <script>
-  var post_list = new Vue({
+  var homePage = new Vue({
     el: '#post-list',
+    components: {
+      'major-nav': major_nav,
+      'advertisement-box': advertisement_box,
+      'post-lists': post_lists
+    },
     data: {
-      posts: [],
       search: ''
     },
     created() {
-      this.getPosts();
-    },
-    computed: {
-      filteredPosts() {
-        return this.posts.filter(post => {
-          return post.topic.match(this.search) || post.content.match(this.search);
-        })
-      }
     },
     methods: {
-      getPosts() {
-        axios.get('/posts.json').then(response => {
-          this.posts = response.data
-          console.log(response.data)
-        })
-      }
     }
   })
 </script>

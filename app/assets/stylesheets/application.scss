@@ -44,3 +44,23 @@ a:hover {
 .nav-title {
   color: #fff;
 }
+
+#xbc_nav {
+  .sign-link {
+    float: right;
+    position: absolute;
+    font-size: 14px;
+    top: 20px;
+  }
+  .sign-in {
+    cursor: pointer;
+    right: 70px;
+  }
+  .sign-up {
+    cursor: pointer;
+    right: 20px;
+  }
+  .sign-divider {
+    right: 55px;
+  }
+}

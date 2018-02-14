@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 	root "posts#index"
   get '/student/signup', to: 'users#new'
   get '/studentsignin', to: 'sessions#new'
+  get '/valentines', to: 'valentines#index'
   match '/studentsignout', to: 'sessions#destroy', via: :delete
   resources :posts do
     resources :comments
@@ -14,4 +15,6 @@ Rails.application.routes.draw do
   end
   resources :companies
   resources :sessions, only: [:new, :create, :destroy]
+
+  resources :majors, only: [:index]
 end

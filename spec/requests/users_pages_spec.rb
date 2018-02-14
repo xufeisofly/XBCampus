@@ -5,7 +5,7 @@ RSpec.describe "UserPages", type: :request do
     subject { page }
 
     describe "profile page", :type => :feature do
-        let(:user) { FactoryGirl.create(:user) }
+        let(:user) { FactoryBot.create(:user) }
         before { visit user_path(user) }
 
         it { should have_selector('h1', text: user.name) }
@@ -40,7 +40,7 @@ RSpec.describe "UserPages", type: :request do
     end
 
     describe "edit", :type => :feature do
-        let(:user) { FactoryGirl.create(:user) }
+        let(:user) { FactoryBot.create(:user) }
         before do
             sign_in user
             visit edit_user_path(user)

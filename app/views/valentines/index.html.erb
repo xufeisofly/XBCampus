@@ -1,0 +1,138 @@
+<% enable_vue_support %>
+
+<div id="valentine-story">
+  <div class="valentine-box">
+    <%= image_tag 'valentine.png', class: "valentine-image" %>
+    <transition name="change">
+      <div :key="this.index" class="content">
+        <span class="content-1">{{ ideas[this.index]['content'][0] }}</span>
+        <span class="content-2">{{ ideas[this.index]['content'][1] }}</span>
+        <span class="content-3">{{ ideas[this.index]['content'][2] }}</span>
+      </div>
+    </transition>
+  </div>
+  <el-button type="warning" class="valentine-btn" v-on:click="chooseIdea">今天吃什么</el-button>
+</div>
+
+<script>
+ var imageHeight = $('.valentine-image').height();
+ $('.content').css('top', imageHeight/2 - 171);
+ var windowHeight = $(window).height();
+ console.log(windowHeight);
+ $('.valentine-btn').css('height', windowHeight-imageHeight);
+</script>
+
+<script>
+ var valentine_story = new Vue({
+   el: '#valentine-story',
+   data: {
+     ideas: [
+       { id: 1, content: "涮羊肉" },
+       { id: 2, content: "涮牛肉" },
+       { id: 3, content: "吃烩面" },
+       { id: 4, content: "不吃了" },
+       { id: 5, content: "刀削面" },
+       { id: 6, content: "方便面" },
+       { id: 7, content: "自己做" },
+       { id: 8, content: "吃饺子" },
+       { id: 9, content: "炸猪排" },
+       { id: 10, content: "七一一" },
+       { id: 11, content: "吃鲈鱼" },
+       { id: 12, content: "西北风" },
+     ],
+     index: 0,
+     timer: '',
+     clear: '',
+     interval: 50
+   },
+   created(){
+     this.timer = setInterval(this.changeIdea, this.interval);
+   },
+   methods: {
+     changeIdea(){
+       if (this.index < this.ideas.length - 1) {
+         this.index += 1;
+       } else {
+         this.index = 0;
+       }
+     },
+     chooseIdea(){
+       if(this.clear != true) {
+         clearInterval(this.timer);
+         this.clear = true;
+       } else {
+         this.timer = setInterval(this.changeIdea, this.interval);
+         this.clear = false;
+       }
+       console.log(this.clear)
+     }
+   }
+ });
+</script>
+
+<style>
+  .valentine-image {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  }
+
+  .change-enter-active {
+  transition: all .8s ease;
+  }
+
+  .change-leave-active {
+  transition: all .4s ease;
+  }
+
+  .change-enter {
+  transform: translateY(90px);
+  opacity: 0;
+  }
+
+  .change-leave-to {
+  transform: translateY(-90px);
+  opacity: 0.1;
+  }
+
+  .valentine-btn {
+  width: 100%;
+  font-size: 60px;
+  }
+
+  .content {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 120px;
+  padding: 0;
+  margin: 0;
+  }
+
+  .content-1 {
+  position: absolute;
+  left: 18%;
+  }
+
+  .content-2 {
+  position: absolute;
+  left: 44%;
+  }
+
+  .content-3 {
+  position: absolute;
+  right: 18%;
+  }
+
+ .valentine-box {
+   width: 100%;
+   height: 100%;
+   border: #000 1px solid;
+   top: 0;
+ }
+
+ #valentine-story {
+   width: 100%;
+ }
+
+</style>
