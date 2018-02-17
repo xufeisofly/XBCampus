@@ -45,6 +45,8 @@ gem 'simple_form'
 gem 'cocoon'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+gem 'serviceworker-rails'
+
 group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
