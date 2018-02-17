@@ -17,3 +17,4 @@
 //= require bootstrap
 //= require vue
 //= require_tree .
+//= require serviceworker-companion
