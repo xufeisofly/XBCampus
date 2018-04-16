@@ -27,7 +27,7 @@ gem 'elasticsearch-rails'
 gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'mysql2'
-
+gem 'version_diff', path: '../version_diff'
 
 # Uploader
 gem 'carrierwave' # 图片上传
